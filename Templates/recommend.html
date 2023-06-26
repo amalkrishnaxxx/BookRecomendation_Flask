@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Recommender System</title>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<style>
+    .text-white{
+        color:Black
+    }
+</style>
+<body style="background-color:#EEEEEE">
+
+    <nav  class="navbar" style="background-color:#333333">
+        <a class="navbar-brand">BOOKIFY</a>
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="/" role="tab" aria-controls="home" aria-selected="true">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="rec-tab" data-toggle="tab" href="/recommend" role="tab" aria-controls="reccommendations" aria-selected="false">Recommends</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="contact-tab" data-toggle="tab" href="/contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+          </li>
+        </ul>
+    </nav>
+
+<section>
+  <div class="container">
+    <div class="row-text-center">
+        <div class="col-md-3">
+            <div class="center com-md-6">
+                <h1 class="text-white" style="font-size:50px margin-left:30px">Book Recommendation </h1>
+                <form action="/recommend_books" method="post">
+                    <input name="user_input" type="text" class="form-control"><br>
+                    <input type="submit" class="btn btn-large btn-success">
+                    </select>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
+</section>
+
+            {% if data %}
+                <h2 class="sm:text-3xl text-2xl font-medium title-font  text-gray-900" style="margin-left:20px">These are the recommended books: </h2><br>
+              {% for i in data %}
+                    <div class="col-md-3" style="margin-top:30px">
+                        <div class="card-deck">
+                            <div class="card">
+                                <img src="{{ i[2] }}" class="card-img-top" alt="recommended book">
+                            <div class="card-body" >
+                              <h5 class="card-title">{{ i[0] }}</h5>
+                              <p class="card-text">{{ i[1] }}</p>
+                              <p class="card-text"><small class="text-muted">{{i[4]}}</small></p>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+              {% endfor %}
+            {% endif %}
